@@ -1,0 +1,9 @@
+com/excilys/computerdatabase/dao/ComputerDAO.class
+com/excilys/computerdatabase/dao/LogDAO.class
+com/excilys/computerdatabase/wrapper/PageWrapper.class
+com/excilys/computerdatabase/wrapper/PageWrapper$Builder.class
+com/excilys/computerdatabase/wrapper/PageWrapper$1.class
+com/excilys/computerdatabase/dao/impl/LogDAOImpl.class
+com/excilys/computerdatabase/dao/CompanyDAO.class
+com/excilys/computerdatabase/dao/impl/CompanyDAOImpl.class
+com/excilys/computerdatabase/dao/impl/ComputerDAOImpl.class
