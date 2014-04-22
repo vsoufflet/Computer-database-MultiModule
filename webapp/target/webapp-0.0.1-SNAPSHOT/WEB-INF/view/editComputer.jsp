@@ -3,7 +3,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <section id="main">
-	Language <a href="?language=en">English</a> | <a href="?language=fr">Français</a>
+	Language <a href="?id=${computerDTO.id}&language=en">English</a> | <a href="?id=${computerDTO.id}&language=fr">Français</a>
 	<h1>
 		<spring:message code="editComputerTitle" />
 	</h1>

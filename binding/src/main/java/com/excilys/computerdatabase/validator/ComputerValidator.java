@@ -23,25 +23,42 @@ public class ComputerValidator implements
 	public boolean isValid(String fullDate, ConstraintValidatorContext context) {
 
 		boolean validDate;
-		String[] date = fullDate.split("/");
 
-		if (fullDate.matches("[0-9]{4}-[0-9]{2}-[0-9]{2}")
-				|| fullDate.matches("[0-9]{4}/[0-9]{2}/[0-9]{2}")) {
-			if (Integer.valueOf(date[1]) <= 12) {
-				if (Integer.valueOf(date[2]) <= 31) {
-					logger.debug("Format 'introduced' correct");
-					validDate = true;
+		if (fullDate != null & !fullDate.equals("")) {
+			if (fullDate.matches("[0-9]{4}-[0-9]{2}-[0-9]{2}")) {
+				String[] date = fullDate.split("-");
+				if (Integer.valueOf(date[1]) <= 12) {
+					if (Integer.valueOf(date[2]) <= 31) {
+						logger.debug("Format 'introduced' correct");
+						validDate = true;
+					} else {
+						logger.debug("31 jours par mois maximum");
+						validDate = false;
+					}
 				} else {
-					logger.debug("31 jours par mois maximum");
+					logger.debug("12 mois par an maximum");
+					validDate = false;
+				}
+			} else if (fullDate.matches("[0-9]{4}/[0-9]{2}/[0-9]{2}")) {
+				String[] date = fullDate.split("/");
+				if (Integer.valueOf(date[1]) <= 12) {
+					if (Integer.valueOf(date[2]) <= 31) {
+						logger.debug("Format 'introduced' correct");
+						validDate = true;
+					} else {
+						logger.debug("31 jours par mois maximum");
+						validDate = false;
+					}
+				} else {
+					logger.debug("12 mois par an maximum");
 					validDate = false;
 				}
 			} else {
-				logger.debug("12 mois par an maximum");
+				logger.error("Format 'introduced' incorrect");
 				validDate = false;
 			}
 		} else {
-			logger.error("Format 'introduced' incorrect");
-			validDate = false;
+			validDate = true;
 		}
 		return validDate;
 	}

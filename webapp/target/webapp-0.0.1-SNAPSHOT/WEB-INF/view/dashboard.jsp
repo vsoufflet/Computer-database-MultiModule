@@ -31,8 +31,8 @@
 			</select> <select name="orderBy">
 				<option SELECTED value="default">
 					<spring:message code="orderBy" /></option>
-				<option value="id"><spring:message code="computerId" /></option>
-				<option value="name"><spring:message code="computerName" /></option>
+				<option value="computer.id"><spring:message code="computerId" /></option>
+				<option value="computer.name"><spring:message code="computerName" /></option>
 				<option value="introduced"><spring:message
 						code="introduced" /></option>
 				<option value="discontinued"><spring:message

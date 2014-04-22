@@ -13,7 +13,7 @@ public interface ComputerDAO {
 
 	public void update(Computer c);
 
-	public void delete(Computer c);
+	public void delete(Long id);
 
 	public List<Computer> retrieveAll(PageWrapper pw);
 

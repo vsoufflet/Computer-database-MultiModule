@@ -10,11 +10,12 @@
          				http://www.springframework.org/schema/context
            				http://www.springframework.org/schema/context/spring-context.xsd">
 
-	<!--  Import dispatcher servlet -->
-	<import resource="classpath:bindingContext.xml"/>
+	<!--  Import binding context -->
+	<import resource="classpath:coreContext.xml"/>
 	
-	<context:annotation-config />
-	
+	<!-- Load hibernate properties file -->
+    <context:property-placeholder location="classpath:hibernate.properties" />
+
 	<!-- Scan package -->
 	<context:component-scan base-package="com.excilys.computerdatabase.dao" />
 	<context:component-scan base-package="com.excilys.computerdatabase.wrapper" />

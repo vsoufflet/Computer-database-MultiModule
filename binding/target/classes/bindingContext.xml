@@ -11,10 +11,10 @@
            				http://www.springframework.org/schema/context/spring-context.xsd">
 
 	<!--  Import core context -->
-	<import resource="coreContext.xml"/>
+	<import resource="classpath:serviceContext.xml"/>
 	
 	<context:annotation-config />
-	
+
 	<!-- Scan package -->
 	<context:component-scan base-package="com.excilys.computerdatabase.dto" />
 	<context:component-scan base-package="com.excilys.computerdatabase.mapper" />

@@ -16,7 +16,6 @@ import com.excilys.computerdatabase.service.ComputerService;
 import com.excilys.computerdatabase.wrapper.PageWrapper;
 
 @Service
-@Transactional(readOnly = true)
 public class ComputerServiceImpl implements ComputerService {
 
 	private static Logger logger = LoggerFactory
@@ -32,13 +31,11 @@ public class ComputerServiceImpl implements ComputerService {
 	public void create(Computer c) {
 
 		logger.debug("computer creation -> started");
-		Log log = Log.builder().type("Info")
-				.description("Creating computer. Name = " + c.getName())
-				.build();
-
-		myLogDAO.create(log);
-
 		myComputerDAO.create(c);
+
+		Log log = Log.builder().type("Info")
+				.description("Creating computer. Name = " + c.getId()).build();
+		myLogDAO.create(log);
 
 		logger.debug("computer creation -> ended");
 	}
@@ -64,6 +61,7 @@ public class ComputerServiceImpl implements ComputerService {
 	public void update(Computer c) {
 
 		logger.debug("computer updating -> started");
+
 		myComputerDAO.update(c);
 		Log log = Log.builder().type("Info")
 				.description("Updating computer n° ").build();
@@ -101,10 +99,10 @@ public class ComputerServiceImpl implements ComputerService {
 	 */
 	@Override
 	@Transactional(readOnly = false)
-	public void delete(Computer c) {
+	public void delete(Long id) {
 
 		logger.debug("computer deleting -> started");
-		myComputerDAO.delete(c);
+		myComputerDAO.delete(id);
 		Log log = Log.builder().type("Info")
 				.description("Deleting computer n° ").build();
 		myLogDAO.create(log);

@@ -2,6 +2,3 @@
 /home/excilys/workspace/Computer-database-MultiModule/binding/src/main/java/com/excilys/computerdatabase/validator/ComputerValidator.java
 /home/excilys/workspace/Computer-database-MultiModule/binding/src/main/java/com/excilys/computerdatabase/validator/DateFormat.java
 /home/excilys/workspace/Computer-database-MultiModule/binding/src/main/java/com/excilys/computerdatabase/mapper/ComputerMapper.java
-/home/excilys/workspace/Computer-database-MultiModule/binding/src/main/java/com/excilys/computerdatabase/mapper/ComputerRowMapper.java
-/home/excilys/workspace/Computer-database-MultiModule/binding/src/main/java/com/excilys/computerdatabase/mapper/CompanyRowMapper.java
-/home/excilys/workspace/Computer-database-MultiModule/binding/src/main/java/com/excilys/computerdatabase/mapper/LogRowMapper.java

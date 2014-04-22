@@ -1,8 +1,19 @@
 package com.excilys.computerdatabase.domain;
 
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@javax.persistence.Entity
+@javax.persistence.Table(name = "company")
 public class Company {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id")
 	private Long id;
+	@Column(name = "name")
 	private String name;
 
 	public Company(Long id, String name) {

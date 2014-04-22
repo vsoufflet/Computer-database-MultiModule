@@ -32,12 +32,14 @@ public class ComputerController {
 	 * 
 	 */
 
-	// TODO: sort update() method while updating existing dates to empty dates
-	// TODO: sort search by company to also have the empty ones
+	// TODO: sort update() method : updating existing dates to empty
+	// dates/getting the new parameters/request grammar problem
+	// TODO: front validation for add and edit features
+	// TODO: custom error pages
+	// TODO: sort log table and date problems
+	// TODO: for model objects, switch from DateTime to LocalDate and refactor
+	// TODO: implement filter parameters saving after deleting/pagination...
 	// TODO: complete mvc pagination
-	// TODO: complete name and dates validation, for add and edit features;
-	// Think about tags
-	// TODO: sort transactions errors
 	// TODO: complete internationalization by adapting date validator to each
 	// language
 
@@ -157,8 +159,8 @@ public class ComputerController {
 			return "redirect:/dashboard";
 
 		} else {
-			mAndV.addObject("id", computerDTO.getId());
-			return "redirect:/edit";
+			mAndV.addObject("computerDTO", computerDTO);
+			return "redirect:/edit?id=" + computerDTO.getId();
 		}
 	}
 
@@ -180,10 +182,15 @@ public class ComputerController {
 				.orderBy(orderBy).way(way).build();
 
 		Computer computer = computerService.retrieveById(id);
-		computerService.delete(computer);
+		computerService.delete(computer.getId());
 
 		computerList = computerService.retrieveList(pw);
 		for (Computer c : computerList) {
+			if (c.getCompany() != null) {
+				Company company = companyService.retrieveById(c.getCompany()
+						.getId());
+				c.setCompany(company);
+			}
 			ComputerDTO computerDTO = cm.toComputerDTO(c);
 			computerDTOList.add(computerDTO);
 		}

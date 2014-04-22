@@ -1,13 +1,13 @@
 package com.excilys.computerdatabase.dto;
 
-import javax.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.NotBlank;
 
 import com.excilys.computerdatabase.validator.DateFormat;
 
 public class ComputerDTO {
 
 	private Long id;
-	@NotNull
+	@NotBlank
 	private String name;
 	@DateFormat
 	private String introduced;
