@@ -17,5 +17,4 @@ public interface ComputerDAO {
 
 	public List<Computer> retrieveAll(PageWrapper pw);
 
-	// public List<Computer> retrieveAllByCompany(PageWrapper pw);
 }

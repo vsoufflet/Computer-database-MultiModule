@@ -19,7 +19,6 @@ public class LogDAOImpl implements LogDAO {
 
 	public void create(Log log) {
 
-		// String query = "INSERT into log (type, description) VALUES(?,?)";
 		sf.getCurrentSession().save(log);
 	}
 

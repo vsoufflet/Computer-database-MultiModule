@@ -15,8 +15,6 @@ public interface ComputerService {
 
 	public List<Computer> retrieveList(PageWrapper pw);
 
-	// public List<Computer> retrieveListByCompany(PageWrapper pw);
-
 	public void delete(Long id);
 
 }

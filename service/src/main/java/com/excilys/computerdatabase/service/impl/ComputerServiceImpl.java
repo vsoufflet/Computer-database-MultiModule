@@ -83,20 +83,6 @@ public class ComputerServiceImpl implements ComputerService {
 		return computerList;
 	}
 
-	/*
-	 * @Override
-	 * 
-	 * @Transactional(readOnly = false) public List<Computer>
-	 * retrieveListByCompany(PageWrapper pw) { List<Computer> computerList =
-	 * null;
-	 * 
-	 * logger.debug("computerlist retrievement by Company-> started");
-	 * computerList = myComputerDAO.retrieveAllByCompany(pw); Log log = Log
-	 * .builder() .type("Info") .description(
-	 * "Looking for the whole computer list via their company") .build();
-	 * myLogDAO.create(log); logger.debug("computerlist retrievement -> ended");
-	 * return computerList; }
-	 */
 	@Override
 	@Transactional(readOnly = false)
 	public void delete(Long id) {
