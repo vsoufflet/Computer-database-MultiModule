@@ -3,8 +3,11 @@ package com.excilys.computerdatabase.dao.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.hibernate.Query;
+import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Property;
+import org.hibernate.criterion.Restrictions;
+import org.hibernate.sql.JoinType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -46,31 +49,32 @@ public class ComputerDAOImpl implements ComputerDAO {
 		sf.getCurrentSession().delete(computer);
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<Computer> retrieveAll(PageWrapper pw) {
 
 		List<Computer> computerList = new ArrayList<Computer>();
 
-		StringBuilder sb = new StringBuilder();
-		sb.append("SELECT computer FROM Computer AS computer LEFT OUTER JOIN computer.company AS company ");
-		if (!"default".equalsIgnoreCase(pw.getSearch())
-				&& !pw.getSearch().equals("")
-				&& !"company.name".equalsIgnoreCase(pw.getSearchBy())) {
-			sb.append("WHERE computer.name LIKE ").append(
-					"'%" + pw.getSearch() + "%' ");
-		} else if (!"default".equalsIgnoreCase(pw.getSearch())
-				&& !pw.getSearch().equals("")
-				&& "company.name".equalsIgnoreCase(pw.getSearchBy())) {
-			sb.append("WHERE company.name LIKE ").append(
-					"'%" + pw.getSearch() + "%' ");
+		Criteria criteria = sf.getCurrentSession().createCriteria(
+				Computer.class);
+		criteria.createAlias("company", "company", JoinType.LEFT_OUTER_JOIN);
+
+		if (!pw.getSearch().equals("")
+				&& !"company".equalsIgnoreCase(pw.getSearchBy())) {
+			StringBuilder sb = new StringBuilder("%").append(pw.getSearch())
+					.append("%");
+			criteria.add(Restrictions.like("name", sb.toString()));
+		} else if ("company".equalsIgnoreCase(pw.getSearchBy())) {
+			StringBuilder sb = new StringBuilder("%").append(pw.getSearch())
+					.append("%");
+			criteria.add(Restrictions.like("company.name", sb.toString()));
 		}
 
 		if (!"default".equalsIgnoreCase(pw.getOrderBy())) {
-			sb.append("ORDER BY ").append(pw.getOrderBy() + " ");
+			criteria.addOrder(Property.forName(pw.getOrderBy()).asc());
 		}
-		Query query = sf.getCurrentSession().createQuery(sb.toString())
-				.setFirstResult(pw.getOffset())
-				.setMaxResults(pw.getComputersPerPage());
-		computerList = query.list();
+		criteria.setFirstResult(pw.getOffset());
+		criteria.setMaxResults(pw.getComputersPerPage());
+		computerList = criteria.list();
 
 		return computerList;
 	}

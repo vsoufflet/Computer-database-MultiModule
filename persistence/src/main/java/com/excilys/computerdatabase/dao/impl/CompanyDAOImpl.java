@@ -3,7 +3,7 @@ package com.excilys.computerdatabase.dao.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.hibernate.Query;
+import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -27,10 +27,10 @@ public class CompanyDAOImpl implements CompanyDAO {
 
 	public List<Company> retrieveList() {
 
-		Query query = sf.getCurrentSession().createQuery(
-				"SELECT company FROM Company AS company");
+		Criteria criteria = sf.getCurrentSession()
+				.createCriteria(Company.class);
 		List<Company> companyList = new ArrayList<Company>();
-		companyList = query.list();
+		companyList = criteria.list();
 
 		return companyList;
 	}

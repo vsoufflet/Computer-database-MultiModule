@@ -2,6 +2,7 @@ package com.excilys.computerdatabase.service.impl;
 
 import java.util.List;
 
+import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +33,7 @@ public class CompanyServiceImpl implements CompanyService {
 
 		logger.debug("company retrievement by id-> started");
 		company = myCompanyDAO.retrieveById(id);
-		Log log = Log.builder().type("Info")
+		Log log = Log.builder().date(new DateTime()).type("Info")
 				.description("Looking for company n° " + id).build();
 		myLogDAO.create(log);
 		logger.debug("company retrievement by id-> ended");
@@ -46,7 +47,7 @@ public class CompanyServiceImpl implements CompanyService {
 
 		logger.debug("companyList retrievement -> started");
 		companyList = myCompanyDAO.retrieveList();
-		Log log = Log.builder().type("Info")
+		Log log = Log.builder().date(new DateTime()).type("Info")
 				.description("Looking for the whole company list").build();
 		myLogDAO.create(log);
 		logger.debug("companyList retrievement -> ended");

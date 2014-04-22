@@ -3,7 +3,7 @@ package com.excilys.computerdatabase.dao.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.hibernate.Query;
+import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -19,16 +19,15 @@ public class LogDAOImpl implements LogDAO {
 
 	public void create(Log log) {
 
-		sf.getCurrentSession().save(log);
+		sf.getCurrentSession().persist(log);
 	}
 
 	public List<Log> retrieveAll() {
 
 		List<Log> logList = new ArrayList<Log>();
-		Query query = sf.getCurrentSession().createQuery(
-				"SELECT log FROM Log AS log");
+		Criteria criteria = sf.getCurrentSession().createCriteria(Log.class);
 
-		logList = query.list();
+		logList = criteria.list();
 		return logList;
 	}
 

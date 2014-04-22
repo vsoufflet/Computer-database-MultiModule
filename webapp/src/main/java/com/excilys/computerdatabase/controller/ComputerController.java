@@ -59,7 +59,7 @@ public class ComputerController {
 	@RequestMapping(value = "dashboard", method = RequestMethod.GET)
 	public ModelAndView displayList(
 			@RequestParam(value = "searchBy", required = false, defaultValue = "default") String searchBy,
-			@RequestParam(value = "search", required = false, defaultValue = "default") String search,
+			@RequestParam(value = "search", required = false, defaultValue = "") String search,
 			@RequestParam(value = "orderBy", required = false, defaultValue = "default") String orderBy,
 			@RequestParam(value = "way", required = false, defaultValue = "default") String way) {
 

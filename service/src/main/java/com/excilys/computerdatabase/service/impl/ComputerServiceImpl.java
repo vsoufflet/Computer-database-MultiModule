@@ -2,6 +2,7 @@ package com.excilys.computerdatabase.service.impl;
 
 import java.util.List;
 
+import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +34,7 @@ public class ComputerServiceImpl implements ComputerService {
 		logger.debug("computer creation -> started");
 		myComputerDAO.create(c);
 
-		Log log = Log.builder().type("Info")
+		Log log = Log.builder().date(new DateTime()).type("Info")
 				.description("Creating computer. Name = " + c.getId()).build();
 		myLogDAO.create(log);
 
@@ -47,7 +48,7 @@ public class ComputerServiceImpl implements ComputerService {
 
 		logger.debug("computer retrievement by id-> started");
 		computer = myComputerDAO.retrieveById(id);
-		Log log = Log.builder().type("Info")
+		Log log = Log.builder().date(new DateTime()).type("Info")
 				.description("Looking for computer n° " + computer.getId())
 				.build();
 		myLogDAO.create(log);
@@ -63,7 +64,7 @@ public class ComputerServiceImpl implements ComputerService {
 		logger.debug("computer updating -> started");
 
 		myComputerDAO.update(c);
-		Log log = Log.builder().type("Info")
+		Log log = Log.builder().date(new DateTime()).type("Info")
 				.description("Updating computer n° ").build();
 		myLogDAO.create(log);
 		logger.debug("computer updating -> endeded");
@@ -76,7 +77,7 @@ public class ComputerServiceImpl implements ComputerService {
 
 		logger.debug("computerlist retrievement -> started");
 		computerList = myComputerDAO.retrieveAll(pw);
-		Log log = Log.builder().type("Info")
+		Log log = Log.builder().date(new DateTime()).type("Info")
 				.description("Looking for the whole computer list").build();
 		myLogDAO.create(log);
 		logger.debug("computerlist retrievement -> ended");
@@ -89,7 +90,7 @@ public class ComputerServiceImpl implements ComputerService {
 
 		logger.debug("computer deleting -> started");
 		myComputerDAO.delete(id);
-		Log log = Log.builder().type("Info")
+		Log log = Log.builder().date(new DateTime()).type("Info")
 				.description("Deleting computer n° ").build();
 		myLogDAO.create(log);
 		logger.debug("computer deleting -> endeded");
