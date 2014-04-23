@@ -3,18 +3,17 @@ package com.excilys.computerdatabase.dao.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
-import org.hibernate.criterion.Property;
-import org.hibernate.criterion.Restrictions;
-import org.hibernate.sql.JoinType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.excilys.computerdatabase.dao.CompanyDAO;
 import com.excilys.computerdatabase.dao.ComputerDAO;
 import com.excilys.computerdatabase.domain.Computer;
+import com.excilys.computerdatabase.domain.QCompany;
+import com.excilys.computerdatabase.domain.QComputer;
 import com.excilys.computerdatabase.wrapper.PageWrapper;
+import com.mysema.query.jpa.hibernate.HibernateQuery;
 
 @Repository
 public class ComputerDAOImpl implements ComputerDAO {
@@ -32,8 +31,14 @@ public class ComputerDAOImpl implements ComputerDAO {
 
 	public Computer retrieveById(Long id) {
 
-		Computer computer = (Computer) sf.getCurrentSession().get(
-				Computer.class, id);
+		/*
+		 * Computer computer = (Computer) sf.getCurrentSession().get(
+		 * Computer.class, id); return computer;
+		 */
+		QComputer qcomputer = QComputer.computer;
+		HibernateQuery query = new HibernateQuery(sf.getCurrentSession());
+		Computer computer = query.from(qcomputer).where(qcomputer.id.eq(id))
+				.uniqueResult(qcomputer);
 		return computer;
 	}
 
@@ -47,35 +52,46 @@ public class ComputerDAOImpl implements ComputerDAO {
 
 		Computer computer = retrieveById(id);
 		sf.getCurrentSession().delete(computer);
+
 	}
 
-	@SuppressWarnings("unchecked")
 	public List<Computer> retrieveAll(PageWrapper pw) {
 
 		List<Computer> computerList = new ArrayList<Computer>();
 
-		Criteria criteria = sf.getCurrentSession().createCriteria(
-				Computer.class);
-		criteria.createAlias("company", "company", JoinType.LEFT_OUTER_JOIN);
-
+		HibernateQuery query = new HibernateQuery(sf.getCurrentSession());
+		QComputer computer = QComputer.computer;
+		QCompany company = QCompany.company;
+		query.from(computer).leftJoin(computer.company, company);
 		if (!pw.getSearch().equals("")
 				&& !"company".equalsIgnoreCase(pw.getSearchBy())) {
-			StringBuilder sb = new StringBuilder("%").append(pw.getSearch())
-					.append("%");
-			criteria.add(Restrictions.like("name", sb.toString()));
+			query.where(computer.name.containsIgnoreCase(pw.getSearch()));
 		} else if ("company".equalsIgnoreCase(pw.getSearchBy())) {
-			StringBuilder sb = new StringBuilder("%").append(pw.getSearch())
-					.append("%");
-			criteria.add(Restrictions.like("company.name", sb.toString()));
+			query.where(company.name.containsIgnoreCase(pw.getSearch()));
 		}
-
-		if (!"default".equalsIgnoreCase(pw.getOrderBy())) {
-			criteria.addOrder(Property.forName(pw.getOrderBy()).asc());
+		switch (pw.getOrderBy()) {
+		case "id":
+			query.orderBy(computer.id.asc());
+			break;
+		case "name":
+			query.orderBy(computer.name.asc());
+			break;
+		case "introduced":
+			query.orderBy(computer.introduced.asc());
+			break;
+		case "disontinued":
+			query.orderBy(computer.discontinued.asc());
+			break;
+		case "company.id":
+			query.orderBy(company.id.asc());
+			break;
+		case "company.name":
+			query.orderBy(company.name.asc());
+			break;
 		}
-		criteria.setFirstResult(pw.getOffset());
-		criteria.setMaxResults(pw.getComputersPerPage());
-		computerList = criteria.list();
-
+		query.offset(pw.getOffset());
+		query.limit(pw.getComputersPerPage());
+		computerList = query.list(computer);
 		return computerList;
 	}
 }

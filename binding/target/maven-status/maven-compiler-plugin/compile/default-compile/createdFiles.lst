@@ -2,4 +2,3 @@ com/excilys/computerdatabase/dto/ComputerDTO$Builder.class
 com/excilys/computerdatabase/dto/ComputerDTO.class
 com/excilys/computerdatabase/validator/ComputerValidator.class
 com/excilys/computerdatabase/validator/DateFormat.class
-com/excilys/computerdatabase/mapper/ComputerMapper.class

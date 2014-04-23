@@ -10,6 +10,8 @@ import org.springframework.stereotype.Repository;
 
 import com.excilys.computerdatabase.dao.LogDAO;
 import com.excilys.computerdatabase.domain.Log;
+import com.excilys.computerdatabase.domain.QLog;
+import com.mysema.query.jpa.hibernate.HibernateQuery;
 
 @Repository
 public class LogDAOImpl implements LogDAO {
@@ -25,9 +27,11 @@ public class LogDAOImpl implements LogDAO {
 	public List<Log> retrieveAll() {
 
 		List<Log> logList = new ArrayList<Log>();
-		Criteria criteria = sf.getCurrentSession().createCriteria(Log.class);
-
-		logList = criteria.list();
+		QLog log = QLog.log;
+		HibernateQuery query = new HibernateQuery(sf.getCurrentSession());
+		
+		logList = query.list(log);
+		
 		return logList;
 	}
 

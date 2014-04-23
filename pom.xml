@@ -24,9 +24,9 @@
 		<javax.servlet-api.version>3.0.1</javax.servlet-api.version>
 		<jsp-api.version>2.0</jsp-api.version>
 		<hibernate-validator.version>5.1.0.Final</hibernate-validator.version>
-		<javax.inject.version>1</javax.inject.version>
 		<hibernate.version>4.3.4.Final</hibernate.version>
 		<jadira.version>2.0.1</jadira.version>
+		<querydsl.version>3.3.2</querydsl.version>
 	</properties>
 
 	<dependencyManagement>
@@ -57,11 +57,6 @@
 				<artifactId>javax.servlet-api</artifactId>
 				<version>${javax.servlet-api.version}</version>
 				<scope>provided</scope>
-			</dependency>
-			<dependency>
-				<groupId>javax.inject</groupId>
-				<artifactId>javax.inject</artifactId>
-				<version>${javax.inject.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>javax.servlet</groupId>
@@ -103,6 +98,17 @@
 				<groupId>org.jadira.usertype</groupId>
 				<artifactId>usertype.jodatime</artifactId>
 				<version>${jadira.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.mysema.querydsl</groupId>
+				<artifactId>querydsl-apt</artifactId>
+				<version>${querydsl.version}</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.mysema.querydsl</groupId>
+				<artifactId>querydsl-jpa</artifactId>
+				<version>${querydsl.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>

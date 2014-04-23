@@ -1,8 +1,5 @@
-com/excilys/computerdatabase/domain/Computer$Builder.class
-com/excilys/computerdatabase/domain/Company$Builder.class
+com/excilys/computerdatabase/domain/QLog.class
+com/excilys/computerdatabase/domain/QComputer.class
 com/excilys/computerdatabase/domain/Computer$1.class
 com/excilys/computerdatabase/domain/Log$1.class
-com/excilys/computerdatabase/domain/Company.class
-com/excilys/computerdatabase/domain/Computer.class
-com/excilys/computerdatabase/domain/Log$Builder.class
-com/excilys/computerdatabase/domain/Log.class
+com/excilys/computerdatabase/domain/QCompany.class
