@@ -1,8 +1,7 @@
 package com.excilys.computerdatabase.service;
 
-import java.util.List;
-
 import com.excilys.computerdatabase.domain.Computer;
+import com.excilys.computerdatabase.wrapper.ListWrapper;
 import com.excilys.computerdatabase.wrapper.PageWrapper;
 
 public interface ComputerService {
@@ -13,8 +12,8 @@ public interface ComputerService {
 
 	public void update(Computer c);
 
-	public List<Computer> retrieveList(PageWrapper pw);
+	public ListWrapper retrieveList(PageWrapper pw);
 
-	public void delete(Long id);
+	public void delete(Computer c);
 
 }

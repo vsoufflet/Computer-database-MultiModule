@@ -1,17 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
         				http://www.springframework.org/schema/beans/spring-beans.xsd
-        				http://www.springframework.org/schema/mvc
-        				http://www.springframework.org/schema/mvc/spring-mvc.xsd 
          				http://www.springframework.org/schema/context
            				http://www.springframework.org/schema/context/spring-context.xsd
             			http://www.springframework.org/schema/tx
 						http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
 
-	<!-- BoneCP configuration -->
+	<!-- Configuration BoneCP DataSource -->
 	<bean id="DataSource" class="com.jolbox.bonecp.BoneCPDataSource">
 		<property name="driverClass" value="com.mysql.jdbc.Driver" />
 		<property name="jdbcUrl"
@@ -24,17 +22,20 @@
 		<property name="defaultAutoCommit" value="false" />
 	</bean>
 
-	<!-- Hibernate session factory -->
-	<bean id="sessionFactory"
-		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
-		<property name="dataSource" ref="DataSource" />
-		<property name="packagesToScan" value="com.excilys.computerdatabase.domain" />
-	</bean>
+		<!-- Spring data EntityManagerFactoryBean -->
+    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="persistenceUnitName" value="persistenceUnit"/>
+        <property name="DataSource" ref="DataSource"/>
+        <property name="packagesToScan" value="com.excilys.computerdatabase.domain"/>
+        <property name="jpaVendorAdapter">
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"/>
+        </property>
+    </bean>
 
 	<!-- Spring transaction manager -->
 	<bean id="transactionManager"
-		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
-		<property name="sessionFactory" ref="sessionFactory" />
+		class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
 	</bean>
 
 	<!-- Enable Transactional annotation -->

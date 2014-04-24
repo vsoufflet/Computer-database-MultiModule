@@ -24,6 +24,7 @@ import com.excilys.computerdatabase.mapper.ComputerMapper;
 import com.excilys.computerdatabase.service.CompanyService;
 import com.excilys.computerdatabase.service.ComputerService;
 import com.excilys.computerdatabase.validator.ComputerValidator;
+import com.excilys.computerdatabase.wrapper.ListWrapper;
 import com.excilys.computerdatabase.wrapper.PageWrapper;
 
 @Controller
@@ -58,20 +59,28 @@ public class ComputerController {
 
 	@RequestMapping(value = "dashboard", method = RequestMethod.GET)
 	public ModelAndView displayList(
-			@RequestParam(value = "searchBy", required = false, defaultValue = "default") String searchBy,
+			@RequestParam(value = "currentPage", required = false, defaultValue = "1") int currentPage,
+			@RequestParam(value = "searchBy", required = false, defaultValue = "computer") String searchBy,
 			@RequestParam(value = "search", required = false, defaultValue = "") String search,
-			@RequestParam(value = "orderBy", required = false, defaultValue = "default") String orderBy,
-			@RequestParam(value = "way", required = false, defaultValue = "default") String way) {
+			@RequestParam(value = "orderBy", required = false, defaultValue = "id") String orderBy,
+			@RequestParam(value = "way", required = false, defaultValue = "asc") String way) {
 
 		logger.debug("Entering displayList");
 
 		List<ComputerDTO> computerDTOList = new ArrayList<ComputerDTO>();
 		List<Computer> computerList = new ArrayList<Computer>();
+		ListWrapper wrapper = null;
 
 		pw = PageWrapper.builder().searchBy(searchBy).search(search)
-				.orderBy(orderBy).way(way).build();
+				.orderBy(orderBy).way(way).currentPage(currentPage).build();
+		pw.setOffset((pw.getCurrentPage() - 1) * pw.getComputersPerPage());
 
-		computerList = computerService.retrieveList(pw);
+		wrapper = computerService.retrieveList(pw);
+		computerList = wrapper.getComputerList();
+
+		pw.setNumberOfComputers(wrapper.getNumberofComputers());
+		pw.setNumberOfPages((int) Math.ceil(pw.getNumberOfComputers()
+				/ pw.getComputersPerPage()));
 
 		if (computerList != null) {
 			for (Computer c : computerList) {
@@ -88,11 +97,6 @@ public class ComputerController {
 		model.addObject("PageWrapper", pw);
 		model.addObject("computerDTOList", computerDTOList);
 
-		if (computerDTOList.size() <= 1) {
-			model.addObject("NombreOrdinateurs", computerDTOList.size());
-		} else {
-			model.addObject("NombreOrdinateurs", computerDTOList.size());
-		}
 		model.setViewName("dashboard");
 
 		logger.debug("Exiting displayList");
@@ -167,24 +171,28 @@ public class ComputerController {
 	@RequestMapping(value = "delete", method = RequestMethod.GET)
 	public String delete(
 			Model model,
-			@RequestParam(value = "searchBy", required = false, defaultValue = "default") String searchBy,
-			@RequestParam(value = "search", required = false, defaultValue = "default") String search,
-			@RequestParam(value = "orderBy", required = false, defaultValue = "default") String orderBy,
-			@RequestParam(value = "way", required = false, defaultValue = "default") String way,
-			@RequestParam(value = "id", required = true) Long id) {
+			@RequestParam(value = "id", required = true) Long id,
+			@RequestParam(value = "searchBy", required = false, defaultValue = "computer") String searchBy,
+			@RequestParam(value = "search", required = false, defaultValue = "") String search,
+			@RequestParam(value = "orderBy", required = false, defaultValue = "id") String orderBy,
+			@RequestParam(value = "way", required = false, defaultValue = "asc") String way) {
 
 		logger.debug("Entering delete");
 
 		List<ComputerDTO> computerDTOList = new ArrayList<ComputerDTO>();
 		List<Computer> computerList = new ArrayList<Computer>();
 
+		ListWrapper wrapper = new ListWrapper();
+
 		pw = PageWrapper.builder().searchBy(searchBy).search(search)
 				.orderBy(orderBy).way(way).build();
 
 		Computer computer = computerService.retrieveById(id);
-		computerService.delete(computer.getId());
+		computerService.delete(computer);
 
-		computerList = computerService.retrieveList(pw);
+		wrapper = computerService.retrieveList(pw);
+		computerList = wrapper.getComputerList();
+
 		for (Computer c : computerList) {
 			if (c.getCompany() != null) {
 				Company company = companyService.retrieveById(c.getCompany()

@@ -1,17 +1,17 @@
 <jsp:include page="include/header.jsp" />
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%-- <%@ taglib uri="/WEB-INF/PaginationTag.tld" prefix="paging" %>  --%>
+<%@ taglib tagdir="/WEB-INF/tags" prefix="paging" %>
 <section id="main">
 	Language <a href="?language=en">English</a> | <a href="?language=fr">Français</a>
 	<c:choose>
-		<c:when test="${NombreOrdinateurs <= 1}">
-			<h1 id="hometitle">${NombreOrdinateurs}
+		<c:when test="${PageWrapper.getNumberofComputers() <= 1}">
+			<h1 id="hometitle">${PageWrapper.getNumberofComputers()}
 				<spring:message code="foundComputer" />
 			</h1>
 		</c:when>
 		<c:otherwise>
-			<h1 id="homeTitle">${NombreOrdinateurs}
+			<h1 id="homeTitle">${PageWrapper.getNumberofComputers()}
 				<spring:message code="foundComputers" />
 			</h1>
 		</c:otherwise>
@@ -22,14 +22,14 @@
 			<input type="search" id="searchbox" name="search"
 				placeholder=<spring:message code="search"/>> <select
 				name="searchBy">
-				<option SELECTED value="default">
+				<option SELECTED value="computer">
 					<spring:message code="searchBy" /></option>
 				<option value="computer">
 					<spring:message code="computerName" /></option>
 				<option value="company">
 					<spring:message code="companyName" /></option>
 			</select> <select name="orderBy">
-				<option SELECTED value="default">
+				<option SELECTED value="id">
 					<spring:message code="orderBy" /></option>
 				<option value="id"><spring:message code="computerId" /></option>
 				<option value="name"><spring:message code="computerName" /></option>
@@ -80,7 +80,7 @@
 
 		</tbody>
 	</table>
-	<%--  <paging:display totalRecords="${NombreOrdinateurs}" recordsPerPage="15"/> --%>
+	<paging:pagination/>
 </section>
 
 <jsp:include page="include/footer.jsp" />

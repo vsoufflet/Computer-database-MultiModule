@@ -1,7 +1,5 @@
-/home/excilys/workspace/Computer-database-MultiModule/persistence/src/main/java/com/excilys/computerdatabase/dao/impl/CompanyDAOImpl.java
-/home/excilys/workspace/Computer-database-MultiModule/persistence/src/main/java/com/excilys/computerdatabase/dao/ComputerDAO.java
-/home/excilys/workspace/Computer-database-MultiModule/persistence/src/main/java/com/excilys/computerdatabase/dao/CompanyDAO.java
-/home/excilys/workspace/Computer-database-MultiModule/persistence/src/main/java/com/excilys/computerdatabase/dao/LogDAO.java
+/home/excilys/workspace/Computer-database-MultiModule/persistence/src/main/java/com/excilys/computerdatabase/dao/ComputerRepository.java
+/home/excilys/workspace/Computer-database-MultiModule/persistence/src/main/java/com/excilys/computerdatabase/dao/CompanyRepository.java
+/home/excilys/workspace/Computer-database-MultiModule/persistence/src/main/java/com/excilys/computerdatabase/wrapper/ListWrapper.java
 /home/excilys/workspace/Computer-database-MultiModule/persistence/src/main/java/com/excilys/computerdatabase/wrapper/PageWrapper.java
-/home/excilys/workspace/Computer-database-MultiModule/persistence/src/main/java/com/excilys/computerdatabase/dao/impl/LogDAOImpl.java
-/home/excilys/workspace/Computer-database-MultiModule/persistence/src/main/java/com/excilys/computerdatabase/dao/impl/ComputerDAOImpl.java
+/home/excilys/workspace/Computer-database-MultiModule/persistence/src/main/java/com/excilys/computerdatabase/dao/LogRepository.java

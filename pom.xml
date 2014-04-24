@@ -20,13 +20,13 @@
 		<bonecp.version>0.7.1.RELEASE</bonecp.version>
 		<logback.version>1.1.1</logback.version>
 		<spring.version>4.0.3.RELEASE</spring.version>
+		<spring-data-jpa.version>1.5.1.RELEASE</spring-data-jpa.version>
 		<joda-time.version>2.3</joda-time.version>
 		<javax.servlet-api.version>3.0.1</javax.servlet-api.version>
 		<jsp-api.version>2.0</jsp-api.version>
 		<hibernate-validator.version>5.1.0.Final</hibernate-validator.version>
 		<hibernate.version>4.3.4.Final</hibernate.version>
 		<jadira.version>2.0.1</jadira.version>
-		<querydsl.version>3.3.2</querydsl.version>
 	</properties>
 
 	<dependencyManagement>
@@ -75,6 +75,16 @@
 				<version>${spring.version}</version>
 			</dependency>
 			<dependency>
+				<groupId>org.springframework.data</groupId>
+				<artifactId>spring-data-jpa</artifactId>
+				<version>${spring-data-jpa.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-entitymanager</artifactId>
+				<version>${hibernate.version}</version>
+			</dependency>
+			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-jdbc</artifactId>
 				<version>${spring.version}</version>
@@ -98,17 +108,6 @@
 				<groupId>org.jadira.usertype</groupId>
 				<artifactId>usertype.jodatime</artifactId>
 				<version>${jadira.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.mysema.querydsl</groupId>
-				<artifactId>querydsl-apt</artifactId>
-				<version>${querydsl.version}</version>
-				<scope>provided</scope>
-			</dependency>
-			<dependency>
-				<groupId>com.mysema.querydsl</groupId>
-				<artifactId>querydsl-jpa</artifactId>
-				<version>${querydsl.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>

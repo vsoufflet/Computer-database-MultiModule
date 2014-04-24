@@ -1,3 +1,7 @@
+com/excilys/computerdatabase/wrapper/ListWrapper.class
 com/excilys/computerdatabase/wrapper/PageWrapper.class
 com/excilys/computerdatabase/wrapper/PageWrapper$Builder.class
+com/excilys/computerdatabase/dao/LogRepository.class
 com/excilys/computerdatabase/wrapper/PageWrapper$1.class
+com/excilys/computerdatabase/dao/CompanyRepository.class
+com/excilys/computerdatabase/dao/ComputerRepository.class
