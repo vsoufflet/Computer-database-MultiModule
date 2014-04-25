@@ -2,8 +2,11 @@ package com.excilys.computerdatabase.wrapper;
 
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
 import com.excilys.computerdatabase.domain.Computer;
 
+@Component
 public class ListWrapper {
 
 	List<Computer> computerList;

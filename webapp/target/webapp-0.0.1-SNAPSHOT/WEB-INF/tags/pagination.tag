@@ -4,7 +4,7 @@
 
 <%--For displaying Previous link except for the 1st page --%>
     <c:if test="${PageWrapper.getCurrentPage() != 1}">
-        <td><a href="dashboard?search=${PageWrapper.getSearch()}&searchby=${PageWrapper.getSearchBy()}&orderby=${PageWrapper.getOrderBy()}&page=${PageWrapper.getCurrentPage() - 1}">Previous</a></td>
+        <td><a href="dashboard?search=${PageWrapper.getSearch()}&searchby=${PageWrapper.getSearchBy()}&orderby=${PageWrapper.getOrderBy()}&currentPage=${PageWrapper.getCurrentPage() - 1}">Previous</a></td>
     </c:if>
  
     <%--For displaying Page numbers.
@@ -17,7 +17,7 @@
                         <td>${i}</td>
                     </c:when>
                     <c:otherwise>
-                        <td><a href="dashboard?search=${PageWrapper.getSearch()}&searchby=${PageWrapper.getSearchBy()}&orderby=${PageWrapper.getOrderBy()}&page=${i}">${i}</a></td>
+                        <td><a href="dashboard?search=${PageWrapper.getSearch()}&searchby=${PageWrapper.getSearchBy()}&orderby=${PageWrapper.getOrderBy()}&currentPage=${i}">${i}</a></td>
                     </c:otherwise>
                 </c:choose>
             </c:forEach>
@@ -26,6 +26,6 @@
  
     <%--For displaying Next link --%>
     <c:if test="${PageWrapper.getCurrentPage() lt PageWrapper.getNumberOfPages()}">
-        <td><a href="dashboard?search=${PageWrapper.getSearch()}&searchby=${PageWrapper.getSearchBy()}&orderby=${PageWrapper.getOrderBy()}&page=${PageWrapper.getCurrentPage() + 1}">Next</a></td>
+        <td><a href="dashboard?search=${PageWrapper.getSearch()}&searchby=${PageWrapper.getSearchBy()}&orderby=${PageWrapper.getOrderBy()}&currentPage=${PageWrapper.getCurrentPage() + 1}">Next</a></td>
     </c:if>
 

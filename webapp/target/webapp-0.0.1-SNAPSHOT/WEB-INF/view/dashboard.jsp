@@ -5,13 +5,13 @@
 <section id="main">
 	Language <a href="?language=en">English</a> | <a href="?language=fr">Français</a>
 	<c:choose>
-		<c:when test="${PageWrapper.getNumberofComputers() <= 1}">
-			<h1 id="hometitle">${PageWrapper.getNumberofComputers()}
+		<c:when test="${PageWrapper.getNumberOfComputers() <= 1}">
+			<h1 id="hometitle">${PageWrapper.getNumberOfComputers()}
 				<spring:message code="foundComputer" />
 			</h1>
 		</c:when>
 		<c:otherwise>
-			<h1 id="homeTitle">${PageWrapper.getNumberofComputers()}
+			<h1 id="homeTitle">${PageWrapper.getNumberOfComputers()}
 				<spring:message code="foundComputers" />
 			</h1>
 		</c:otherwise>
