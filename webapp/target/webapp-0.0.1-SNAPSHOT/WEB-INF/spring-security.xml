@@ -8,12 +8,10 @@
 								 http://www.springframework.org/schema/security
 								 http://www.springframework.org/schema/security/spring-security.xsd">
 
-	<http>
-		<intercept-url pattern="/index.jsp" access="ROLE_DEFAULT"/>
-		<intercept-url pattern="/webapp/dashboard" access="ROLE_DEFAULT"/>
-		<intercept-url pattern="/webapp/addComputerForm" access="ROLE_ADMIN" />
-		<intercept-url pattern="/webapp/edit" access="ROLE_ADMIN" />
-		<intercept-url pattern="/webapp/delete" access="ROLE_ADMIN" />
+	<http auto-config="true">
+		<intercept-url pattern="/addComputerForm" access="ROLE_ADMIN" />
+		<intercept-url pattern="/edit" access="ROLE_ADMIN" />
+		<intercept-url pattern="/delete" access="ROLE_ADMIN" />
 		<http-basic />
 	</http>
 
