@@ -30,8 +30,7 @@
 		<hibernate-validator.version>5.1.0.Final</hibernate-validator.version>
 		<hibernate.version>4.3.4.Final</hibernate.version>
 		<jadira.version>2.0.1</jadira.version>
-		<jaxws-spring.version>1.9</jaxws-spring.version>
-		<jaxws-rt.version>2.2.8</jaxws-rt.version>
+		<cxf-jaxrs.version>2.7.0</cxf-jaxrs.version>
 	</properties>
 
 	<dependencyManagement>
@@ -175,38 +174,11 @@
 				</exclusions>
 			</dependency>
 
-			<!-- Jax-WS WebService -->
+			<!-- Jax-RS WebService -->
 			<dependency>
-				<groupId>org.jvnet.jax-ws-commons.spring</groupId>
-				<artifactId>jaxws-spring</artifactId>
-				<version>${jaxws-spring.version}</version>
-				<exclusions>
-					<exclusion>
-						<groupId>org.springframework</groupId>
-						<artifactId>spring-core</artifactId>
-					</exclusion>
-					<exclusion>
-						<groupId>org.springframework</groupId>
-						<artifactId>spring-beans</artifactId>
-					</exclusion>
-					<exclusion>
-						<groupId>org.springframework</groupId>
-						<artifactId>spring-context</artifactId>
-					</exclusion>
-					<exclusion>
-						<groupId>org.springframework</groupId>
-						<artifactId>spring-aop</artifactId>
-					</exclusion>
-					<exclusion>
-						<groupId>org.springframework</groupId>
-						<artifactId>spring-web</artifactId>
-					</exclusion>
-				</exclusions>
-			</dependency>
-			<dependency>
-				<groupId>com.sun.xml.ws</groupId>
-				<artifactId>jaxws-rt</artifactId>
-				<version>${jaxws-rt.version}</version>
+				<groupId>org.apache.cxf</groupId>
+				<artifactId>cxf-rt-frontend-jaxrs</artifactId>
+				<version>${cxf-jaxrs.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
