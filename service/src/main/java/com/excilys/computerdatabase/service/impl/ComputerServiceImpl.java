@@ -121,4 +121,28 @@ public class ComputerServiceImpl implements ComputerService {
 		logger.debug("computerlist retrievement -> ended");
 		return wrapper;
 	}
+
+	@Override
+	@Transactional(readOnly = false)
+	public ListWrapper retrieveList() {
+		List<Computer> computerList = null;
+
+		ListWrapper wrapper = new ListWrapper();
+
+		logger.debug("computerlist retrievement -> started");
+		int count = 0;
+
+		computerList = myComputerDAO.findAll();
+		count = (int) myComputerDAO.count();
+
+		Log log = Log.builder().date(new DateTime()).type("Info")
+				.description("Looking for the whole computer list").build();
+		myLogDAO.save(log);
+
+		wrapper.setComputerList(computerList);
+		wrapper.setNumberofComputers(count);
+
+		logger.debug("computerlist retrievement -> ended");
+		return wrapper;
+	}
 }

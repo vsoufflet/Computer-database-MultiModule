@@ -39,6 +39,7 @@ public class ComputerController {
 	// TODO: implement filter parameters saving after deleting/pagination...
 	// TODO: complete internationalization by adapting date validator to each
 	// language
+	// TODO: solve the "sign in" button text problem in login.jsp
 
 	@Autowired
 	private ComputerService computerService;
@@ -48,8 +49,8 @@ public class ComputerController {
 	private ComputerMapper cm;
 	@Autowired
 	private ComputerValidator cv;
-	@Autowired
-	private PageWrapper pw;
+
+	private PageWrapper pw = new PageWrapper();
 	private static Logger logger = LoggerFactory
 			.getLogger(ComputerController.class);
 

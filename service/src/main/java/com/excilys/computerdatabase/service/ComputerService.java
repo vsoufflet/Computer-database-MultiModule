@@ -14,6 +14,8 @@ public interface ComputerService {
 
 	public ListWrapper retrieveList(PageWrapper pw);
 
+	public ListWrapper retrieveList();
+
 	public void delete(Computer c);
 
 }

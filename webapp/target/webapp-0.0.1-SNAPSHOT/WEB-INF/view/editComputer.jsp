@@ -4,7 +4,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <section id="main">
 	<spring:message code="language" /> <a href="?language=en">English</a> | <a href="?language=fr">Français</a>
-	<a href="loginForm"><spring:message code="signIn" /></a> | <a href="<c:url value="j_spring_security_logout"/>"><spring:message code="signOut" /></a>
+	<a href="loginForm"><spring:message code="signIn" /></a> | <a href="<c:url value='j_spring_security_logout'/>"><spring:message code="signOut" /></a>
 	<h1>
 		<spring:message code="editComputerTitle" />
 	</h1>

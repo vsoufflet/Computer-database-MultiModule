@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>Computer-database</groupId>
+		<artifactId>Computer-database-MultiModule</artifactId>
+		<version>${project.version}</version>
+	</parent>
+	<artifactId>webservice</artifactId>
+	<name>webservice</name>
+	<packaging>war</packaging>
+
+	<dependencies>
+		<dependency>
+			<groupId>Computer-database</groupId>
+			<artifactId>binding</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jvnet.jax-ws-commons.spring</groupId>
+			<artifactId>jaxws-spring</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.xml.ws</groupId>
+			<artifactId>jaxws-rt</artifactId>
+		</dependency>
+	</dependencies>
+</project>
