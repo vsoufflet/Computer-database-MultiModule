@@ -33,14 +33,10 @@ public class ComputerController {
 	 * 
 	 */
 
-	// TODO: sort update() method : updating existing dates to empty
-	// dates/getting the new parameters/request grammar problem
 	// TODO: front validation for add and edit features
 	// TODO: custom error pages
-	// TODO: sort log table and date problems
 	// TODO: for model objects, switch from DateTime to LocalDate and refactor
 	// TODO: implement filter parameters saving after deleting/pagination...
-	// TODO: complete mvc pagination
 	// TODO: complete internationalization by adapting date validator to each
 	// language
 
@@ -206,5 +202,17 @@ public class ComputerController {
 		logger.debug("Exiting delete");
 
 		return "redirect:/dashboard";
+	}
+
+	@RequestMapping(value = "loginForm", method = RequestMethod.GET)
+	public String loginForm() {
+		System.out.println("affiche cette putain de page de login!!!");
+		return "login";
+	}
+
+	@RequestMapping(value = "login", method = RequestMethod.GET)
+	public String login() {
+		System.out.println("affiche cette putain de page de login!!!");
+		return "login";
 	}
 }

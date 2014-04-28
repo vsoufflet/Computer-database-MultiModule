@@ -1,9 +1,13 @@
 <jsp:include page="include/header.jsp" />
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@ taglib tagdir="/WEB-INF/tags" prefix="paging" %>
+<%@ taglib tagdir="/WEB-INF/tags" prefix="paging"%>
 <section id="main">
-	Language <a href="?language=en">English</a> | <a href="?language=fr">Français</a>
+	<spring:message code="language" />
+	<a href="?language=en">English</a> | <a href="?language=fr">Français</a>
+	<a href="loginForm"><spring:message code="signIn" /></a> | <a
+		href="<c:url value='j_spring_security_logout'/>"><spring:message
+			code="signOut" /></a>
 	<c:choose>
 		<c:when test="${PageWrapper.getNumberOfComputers() <= 1}">
 			<h1 id="hometitle">${PageWrapper.getNumberOfComputers()}
@@ -80,7 +84,7 @@
 
 		</tbody>
 	</table>
-	<paging:pagination/>
+	<paging:pagination />
 </section>
 
 <jsp:include page="include/footer.jsp" />

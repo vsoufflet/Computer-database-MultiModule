@@ -3,7 +3,8 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <section id="main">
-	Language <a href="?id=${computerDTO.id}&language=en">English</a> | <a href="?id=${computerDTO.id}&language=fr">Français</a>
+	<spring:message code="language" /> <a href="?language=en">English</a> | <a href="?language=fr">Français</a>
+	<a href="loginForm"><spring:message code="signIn" /></a> | <a href="<c:url value='j_spring_security_logout'/>"><spring:message code="signOut" /></a>
 	<h1>
 		<spring:message code="editComputerTitle" />
 	</h1>
